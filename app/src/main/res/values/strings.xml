@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">MonsterTalk</string>
+    <string name="username_label">Usuário</string>
+    <string name="password_label">Senha</string>
+    <string name="login_button">Login</string>
+</resources>
