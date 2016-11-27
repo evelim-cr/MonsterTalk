@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <TextView
+        android:text="Nova conversa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/titleTextView"
+        android:layout_marginBottom="16dp"
+        android:textAppearance="@android:style/TextAppearance.Material.DialogWindowTitle" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textNoSuggestions"
+        android:ems="10"
+        android:id="@+id/destEditText"
+        android:hint="Destinatário" />
+
+    <Switch
+        android:text="Criptografado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/cryptoSwitch"
+        android:layout_marginTop="16dp" />
+</LinearLayout>

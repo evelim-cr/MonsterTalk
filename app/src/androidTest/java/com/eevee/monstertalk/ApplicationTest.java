@@ -1,4 +1,4 @@
-package com.monster.eevee.monstertalk;
+package com.eevee.monstertalk;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;
