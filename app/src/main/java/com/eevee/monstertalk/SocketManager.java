@@ -6,8 +6,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URI;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.crypto.NoSuchPaddingException;
 
 public class SocketManager  {
     private static final String TAG = "SOCKET";
@@ -52,7 +55,8 @@ public class SocketManager  {
         mOnChatUpdateListeners.add(onChatUpdateListener);
     }
 
-    public void connect(URI host, String username, String password) throws AlreadyConnectedException {
+    public void connect(URI host, String username, String password)
+            throws AlreadyConnectedException, NoSuchAlgorithmException, NoSuchPaddingException {
         if (mConnected) {
             throw new AlreadyConnectedException("Socket already connected!");
         }
@@ -168,10 +172,12 @@ public class SocketManager  {
     public void sendMessage(Message message) {
         try {
             JSONObject data = new JSONObject();
-            data.put("from", message.getFrom());
-            data.put("to", message.getTo());
+            data.put("from", message.getFrom().getUsername());
+            data.put("to", message.getTo().getUsername());
             data.put("body", message.getBody());
             mSocket.send("message", data);
+
+            Log.d(TAG, "sending message");
         }
         catch (JSONException e) {
             Log.e(TAG, "Error while constructing JSON: " + e.getMessage());

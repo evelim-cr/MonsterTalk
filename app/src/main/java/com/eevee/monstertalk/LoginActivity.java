@@ -12,6 +12,9 @@ import com.eevee.monstertalk.monstertalk.R;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.security.NoSuchAlgorithmException;
+
+import javax.crypto.NoSuchPaddingException;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "LoginActivity";
@@ -31,7 +34,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mPasswordView = (TextView) findViewById(R.id.passwordText);
         mLoginButton = (Button) findViewById(R.id.loginButton);
 
-        mHostnameView.setText("http://192.168.25.6:8887");
+        mHostnameView.setText("monstertalk-bazk.c9users.io:80");
+
+        //10.254.221.239 - broadcom
+        //192.168.25.6 - casa
 
         mLoginButton.setOnClickListener(this);
     }
@@ -39,7 +45,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View view) {
         if (view == this.mLoginButton) {
-            String hostname = this.mHostnameView.getText().toString();
+            String hostname = "http://" + this.mHostnameView.getText().toString();
             String username = this.mUsernameView.getText().toString();
             String password = this.mPasswordView.getText().toString();
 
@@ -61,6 +67,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
             catch (SocketManager.AlreadyConnectedException e) {
                 Log.e(TAG, "Socket is already connected!");
+            }
+            catch (NoSuchAlgorithmException e ){
+                Log.e(TAG, "Crypt Error!");
+            }
+            catch (NoSuchPaddingException e){
+                Log.e(TAG, "Crypt Error!");
             }
         }
     }
